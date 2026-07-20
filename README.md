@@ -1,36 +1,102 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CodeSnap
 
-## Getting Started
+**Turn your code into beautiful screenshots, ready to share.**
 
-First, run the development server:
+CodeSnap is a fully client-side tool for creating polished code images for
+social media, blog posts, and documentation. Paste your code, style the card,
+and export a crisp PNG or SVG — all in the browser.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black)](https://nextjs.org)
+[![React](https://img.shields.io/badge/React-19-149eca)](https://react.dev)
+
+<!-- Add a screenshot or GIF of the app here, e.g. ![CodeSnap](./public/screenshot.png) -->
+
+## Features
+
+- **Syntax highlighting** powered by [Shiki](https://shiki.style) with a live,
+  editable code area.
+- **Language support** — JS, TS, JSX, TSX, HTML, CSS, JSON, Bash, Python, Go,
+  Rust, and automatic language detection.
+- **Curated syntax themes** (dark and light) plus a light/dark app UI.
+- **Card styling** — macOS window frame, minimal, or none; editable filename;
+  adjustable corner radius and shadow.
+- **Backgrounds** — gradient presets, solid colors, a custom two-stop gradient
+  builder, image upload, or transparent.
+- **Typography** — JetBrains Mono, Fira Code, Geist Mono, IBM Plex Mono, and
+  Source Code Pro (self-hosted), with a ligature toggle and font-size control.
+- **Framing** — padding control, aspect-ratio presets (auto · 1:1 · 16:9 · 4:3),
+  line numbers, line highlighting/focus, and a watermark toggle.
+- **Export** — download PNG at 2× (retina) or SVG, or copy the image straight to
+  your clipboard. Copy the code as text too.
+- **Sharing without a backend** — the full editor state is compressed into the
+  URL, so links are self-contained and need zero infrastructure.
+- **Import** from a public GitHub gist, `blob` link, or raw URL.
+- **Keyboard shortcuts** — ⌘⇧C to copy the image, ⌘S to download.
+- Your last settings are remembered via `localStorage`.
+
+## Design principles
+
+- **No auth, ever.** No accounts, no login, no user identity.
+- **No backend.** Everything runs in the browser; there is no server-side
+  storage. Sharing works through URL-encoded links.
+
+See [`ROADMAP.md`](./ROADMAP.md) for the full feature history and what's planned.
+
+## Tech stack
+
+Next.js 16 · React 19 · Tailwind CSS v4 · shadcn/ui · Hugeicons · Shiki ·
+`react-simple-code-editor` · `html-to-image` · `lz-string` · `flourite`
+
+## Getting started
+
+### Prerequisites
+
+- [Bun](https://bun.sh) (recommended) or Node.js 20+
+
+### Install & run
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
+# Clone the repo
+git clone https://github.com/ARITRA69/codesnap.git
+cd codesnap
+
+# Install dependencies
+bun install
+
+# Start the dev server
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+> Prefer npm/pnpm/yarn? They work too — swap `bun` for your package manager of
+> choice (e.g. `npm install && npm run dev`).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Scripts
 
-## Learn More
+| Command                | Description                              |
+| ---------------------- | ---------------------------------------- |
+| `bun dev`              | Start the development server             |
+| `bun run build`        | Build for production                     |
+| `bun start`            | Run the production build                 |
+| `bun run lint`         | Lint with ESLint                         |
+| `bun run format`       | Format the codebase with Prettier        |
+| `bun run format:check` | Check formatting without writing changes |
 
-To learn more about Next.js, take a look at the following resources:
+## Contributing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Contributions are welcome! To get started:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Fork the repository and create a feature branch.
+2. Make your changes, keeping them consistent with the
+   [design principles](#design-principles) — anything requiring auth or a
+   backend is out of scope by design.
+3. Run `bun run lint` and `bun run format` before committing.
+4. Open a pull request describing what you changed and why.
 
-## Deploy on Vercel
+For larger features, consider opening an issue first to discuss the approach.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Released under the [MIT License](./LICENSE).
