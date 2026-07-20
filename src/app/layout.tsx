@@ -13,8 +13,21 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://codesnap.aritra360.com"),
   title: "CodeSnap — Beautiful code screenshots",
   description: "Turn your code into beautiful screenshots ready to share.",
+  openGraph: {
+    title: "CodeSnap — Beautiful code screenshots",
+    description: "Turn your code into beautiful screenshots ready to share.",
+    url: "/",
+    siteName: "CodeSnap",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CodeSnap — Beautiful code screenshots",
+    description: "Turn your code into beautiful screenshots ready to share.",
+  },
 };
 
 const themeScript = `try{var t=localStorage.getItem('codesnap:theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark')}}catch(e){}`;
