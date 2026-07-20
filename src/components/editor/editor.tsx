@@ -14,8 +14,10 @@ export function Editor() {
       <div className="flex h-screen flex-col">
         <Toolbar canvasRef={canvasRef} />
         <div className="flex flex-1 overflow-hidden">
-          <main className="flex flex-1 items-center justify-center overflow-auto bg-muted/40 p-10">
-            <CodeCanvas ref={canvasRef} />
+          <main className="flex flex-1 overflow-auto bg-muted/40">
+            <div className="m-auto p-10">
+              <CodeCanvas ref={canvasRef} />
+            </div>
           </main>
           <SettingsSidebar />
         </div>
