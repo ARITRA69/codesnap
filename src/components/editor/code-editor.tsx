@@ -28,7 +28,13 @@ export function CodeEditor({
 
   const highlight = (code: string): string => {
     if (!highlighter) return escapePlain(code);
-    return highlightToHtml(highlighter, code, effectiveLanguage, settings.theme, focusLines);
+    return highlightToHtml(
+      highlighter,
+      code,
+      effectiveLanguage,
+      settings.theme,
+      focusLines,
+    );
   };
 
   return (

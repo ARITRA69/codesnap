@@ -38,7 +38,11 @@ export function ImportButton() {
 
   return (
     <Popover.Root open={open} onOpenChange={setOpen}>
-      <Popover.Trigger render={<Button variant="ghost" size="sm" title="Import code from a URL" />}>
+      <Popover.Trigger
+        render={
+          <Button variant="ghost" size="sm" title="Import code from a URL" />
+        }
+      >
         <HugeiconsIcon icon={CloudDownloadIcon} />
         Import
       </Popover.Trigger>
@@ -55,8 +59,14 @@ export function ImportButton() {
                 className="h-9 w-full rounded-md border bg-background px-2.5 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
               />
               <div className="flex items-center justify-between gap-2">
-                <p className="text-xs text-muted-foreground">Public URLs only — no login.</p>
-                <Button type="submit" size="sm" disabled={loading || !url.trim()}>
+                <p className="text-xs text-muted-foreground">
+                  Public URLs only — no login.
+                </p>
+                <Button
+                  type="submit"
+                  size="sm"
+                  disabled={loading || !url.trim()}
+                >
                   {loading ? "Importing…" : "Import"}
                 </Button>
               </div>

@@ -47,7 +47,10 @@ export type EditorSettings = {
 
 type EditorContextValue = {
   settings: EditorSettings;
-  update: <K extends keyof EditorSettings>(key: K, value: EditorSettings[K]) => void;
+  update: <K extends keyof EditorSettings>(
+    key: K,
+    value: EditorSettings[K],
+  ) => void;
   highlighter: Highlighter | null;
   /** Concrete Shiki language actually used for highlighting (resolves "auto"). */
   effectiveLanguage: BundledLanguage;
@@ -80,7 +83,11 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
       const shared = decodeSharedSettings(window.location.hash);
       if (shared) {
         setSettings({ ...DEFAULT_SETTINGS, ...shared });
-        history.replaceState(null, "", window.location.pathname + window.location.search);
+        history.replaceState(
+          null,
+          "",
+          window.location.pathname + window.location.search,
+        );
         setHydrated(true);
         return;
       }
@@ -128,7 +135,9 @@ export function EditorProvider({ children }: { children: React.ReactNode }) {
     [settings, update, highlighter, effectiveLanguage],
   );
 
-  return <EditorContext.Provider value={value}>{children}</EditorContext.Provider>;
+  return (
+    <EditorContext.Provider value={value}>{children}</EditorContext.Provider>
+  );
 }
 
 export function useEditor(): EditorContextValue {

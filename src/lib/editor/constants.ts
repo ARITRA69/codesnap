@@ -42,17 +42,54 @@ export const THEMES: ThemeOption[] = [
 ];
 
 export const BACKGROUNDS: BackgroundOption[] = [
-  { id: "candy", label: "Candy", css: "linear-gradient(135deg, #f6d365 0%, #fda085 100%)" },
-  { id: "twilight", label: "Twilight", css: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)" },
-  { id: "ocean", label: "Ocean", css: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)" },
-  { id: "grape", label: "Grape", css: "linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)" },
-  { id: "forest", label: "Forest", css: "linear-gradient(135deg, #0ba360 0%, #3cba92 100%)" },
-  { id: "flame", label: "Flame", css: "linear-gradient(135deg, #f83600 0%, #f9d423 100%)" },
-  { id: "night", label: "Night", css: "linear-gradient(135deg, #232526 0%, #414345 100%)" },
-  { id: "peach", label: "Peach", css: "linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)" },
+  {
+    id: "candy",
+    label: "Candy",
+    css: "linear-gradient(135deg, #f6d365 0%, #fda085 100%)",
+  },
+  {
+    id: "twilight",
+    label: "Twilight",
+    css: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+  },
+  {
+    id: "ocean",
+    label: "Ocean",
+    css: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+  },
+  {
+    id: "grape",
+    label: "Grape",
+    css: "linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)",
+  },
+  {
+    id: "forest",
+    label: "Forest",
+    css: "linear-gradient(135deg, #0ba360 0%, #3cba92 100%)",
+  },
+  {
+    id: "flame",
+    label: "Flame",
+    css: "linear-gradient(135deg, #f83600 0%, #f9d423 100%)",
+  },
+  {
+    id: "night",
+    label: "Night",
+    css: "linear-gradient(135deg, #232526 0%, #414345 100%)",
+  },
+  {
+    id: "peach",
+    label: "Peach",
+    css: "linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)",
+  },
   { id: "slate", label: "Slate", css: "#1e293b" },
   { id: "white", label: "White", css: "#ffffff" },
-  { id: "transparent", label: "Transparent", css: "transparent", transparent: true },
+  {
+    id: "transparent",
+    label: "Transparent",
+    css: "transparent",
+    transparent: true,
+  },
 ];
 
 export const DEFAULT_CODE = `function greet(name: string) {
@@ -92,7 +129,11 @@ export const FONTS: FontOption[] = [
   { id: "fira-code", label: "Fira Code", family: "Fira Code" },
   { id: "geist-mono", label: "Geist Mono", family: "Geist Mono" },
   { id: "ibm-plex-mono", label: "IBM Plex Mono", family: "IBM Plex Mono" },
-  { id: "source-code-pro", label: "Source Code Pro", family: "Source Code Pro" },
+  {
+    id: "source-code-pro",
+    label: "Source Code Pro",
+    family: "Source Code Pro",
+  },
 ];
 
 export function getFontFamily(id: string): string {

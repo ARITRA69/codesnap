@@ -44,7 +44,9 @@ export async function importCode(input: string): Promise<ImportResult> {
   const gist = url.match(/gist\.github\.com\/(?:[^/]+\/)?([0-9a-f]{6,})/i);
   if (gist) return importGist(gist[1]);
 
-  const blob = url.match(/^https?:\/\/github\.com\/([^/]+)\/([^/]+)\/blob\/(.+)$/i);
+  const blob = url.match(
+    /^https?:\/\/github\.com\/([^/]+)\/([^/]+)\/blob\/(.+)$/i,
+  );
   if (blob) {
     return importRaw(
       `https://raw.githubusercontent.com/${blob[1]}/${blob[2]}/${blob[3]}`,
@@ -92,5 +94,7 @@ async function importRaw(url: string): Promise<ImportResult> {
 function fetchWithTimeout(url: string, ms = 10000): Promise<Response> {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), ms);
-  return fetch(url, { signal: controller.signal }).finally(() => clearTimeout(timer));
+  return fetch(url, { signal: controller.signal }).finally(() =>
+    clearTimeout(timer),
+  );
 }

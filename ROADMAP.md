@@ -19,23 +19,27 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 Goal: paste code → style the card → export a PNG. Fully client-side.
 
 ### Foundation
+
 - [x] Remove create-next-app boilerplate from `page.tsx`
 - [x] App layout: preview canvas (center) + settings sidebar (right)
 - [x] Global state for editor settings (language, theme, background, padding, filename)
 
 ### Editor + highlighting
+
 - [x] Integrate Shiki for syntax highlighting
 - [x] Live-editable code area (`react-simple-code-editor` + Shiki overlay)
 - [x] Language selector — JS, TS, JSX, TSX, HTML, CSS, JSON, Bash, Python, Go, Rust
 - [x] Syntax theme picker — 6 curated themes (dark + light)
 
 ### Card styling
+
 - [x] macOS window frame (traffic-light dots, rounded corners, drop shadow)
 - [x] Editable filename / title in window bar
 - [x] Background: 8 gradient presets + solid colors + transparent
 - [x] Padding control (card ↔ background edge)
 
 ### Export
+
 - [x] Download PNG at 2x scale (retina)
 - [x] Copy image to clipboard
 
@@ -87,11 +91,13 @@ compressed into the share URL itself. Zero infrastructure, fully client-side.
 - [x] Restore state when a share link is opened (hash → settings, then clean the URL)
 
 ### Out of scope — permanently (see project principle)
+
 - Auth / login / user accounts of any kind.
 - Save-to-account, snippet gallery, history — all need server-side storage.
 - Open Graph preview images — need a server to render each link.
 
 ### Deferred (client-side, still possible later)
+
 - [ ] Window tabs / multi-file snippets
 
 ---

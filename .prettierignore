@@ -1,0 +1,15 @@
+# Build output
+.next/
+out/
+build/
+
+# Dependencies
+node_modules/
+
+# Lockfiles & generated
+bun.lock
+next-env.d.ts
+tsconfig.tsbuildinfo
+
+# Assets
+public/

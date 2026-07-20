@@ -102,7 +102,13 @@ export function SettingsSidebar() {
 
 /* ---------- shared primitives ---------- */
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
   return (
     <section className="flex flex-col gap-2.5">
       <h2 className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
@@ -140,7 +146,7 @@ function SliderField({
           onChange={(e) => onChange(Number(e.target.value))}
           className="h-1.5 flex-1 cursor-pointer appearance-none rounded-full bg-muted accent-primary"
         />
-        <span className="w-10 text-right text-sm tabular-nums text-muted-foreground">
+        <span className="w-10 text-right text-sm text-muted-foreground tabular-nums">
           {value}
         </span>
       </div>
@@ -163,7 +169,9 @@ function SegmentedField<T extends string>({
     <Section title={title}>
       <div
         className="grid gap-1.5"
-        style={{ gridTemplateColumns: `repeat(${options.length}, minmax(0, 1fr))` }}
+        style={{
+          gridTemplateColumns: `repeat(${options.length}, minmax(0, 1fr))`,
+        }}
       >
         {options.map((opt) => (
           <button
@@ -226,12 +234,16 @@ function ToggleRow({
 function LanguageField() {
   const { settings, update, effectiveLanguage } = useEditor();
   const detectedLabel =
-    LANGUAGES.find((l) => l.id === effectiveLanguage)?.label ?? effectiveLanguage;
+    LANGUAGES.find((l) => l.id === effectiveLanguage)?.label ??
+    effectiveLanguage;
   return (
     <Section title="Language">
       <Combobox
         items={LANGUAGE_ITEMS}
-        value={LANGUAGE_ITEMS.find((item) => item.value === settings.language) ?? null}
+        value={
+          LANGUAGE_ITEMS.find((item) => item.value === settings.language) ??
+          null
+        }
         onValueChange={(item) => update("language", item?.value ?? "auto")}
       >
         <ComboboxInput placeholder="Select language" className="w-full" />
@@ -247,7 +259,9 @@ function LanguageField() {
         </ComboboxContent>
       </Combobox>
       {settings.language === "auto" && (
-        <p className="text-xs text-muted-foreground">Detected: {detectedLabel}</p>
+        <p className="text-xs text-muted-foreground">
+          Detected: {detectedLabel}
+        </p>
       )}
     </Section>
   );
@@ -272,7 +286,9 @@ function ThemeField() {
           >
             <span
               className="size-3.5 shrink-0 rounded-full border border-black/10"
-              style={{ background: theme.appearance === "dark" ? "#282c34" : "#ffffff" }}
+              style={{
+                background: theme.appearance === "dark" ? "#282c34" : "#ffffff",
+              }}
             />
             <span className="truncate">{theme.label}</span>
           </button>
@@ -288,7 +304,9 @@ function FontField() {
     <Section title="Font">
       <Combobox
         items={FONT_ITEMS}
-        value={FONT_ITEMS.find((item) => item.value === settings.fontFamily) ?? null}
+        value={
+          FONT_ITEMS.find((item) => item.value === settings.fontFamily) ?? null
+        }
         onValueChange={(item) => {
           if (item) update("fontFamily", item.value);
         }}
@@ -315,7 +333,7 @@ function FontField() {
           onChange={(e) => update("fontSize", Number(e.target.value))}
           className="h-1.5 flex-1 cursor-pointer appearance-none rounded-full bg-muted accent-primary"
         />
-        <span className="w-14 text-right text-sm tabular-nums text-muted-foreground">
+        <span className="w-14 text-right text-sm text-muted-foreground tabular-nums">
           {settings.fontSize}px
         </span>
       </div>
@@ -357,7 +375,9 @@ function CustomBackgroundField() {
       ? settings.customColor1
       : `linear-gradient(${settings.customAngle}deg, ${settings.customColor1}, ${settings.customColor2})`;
 
-  const apply = <K extends "customMode" | "customColor1" | "customColor2" | "customAngle">(
+  const apply = <
+    K extends "customMode" | "customColor1" | "customColor2" | "customAngle",
+  >(
     key: K,
     value: (typeof settings)[K],
   ) => {
@@ -397,9 +417,15 @@ function CustomBackgroundField() {
         </div>
       </div>
       <div className="flex items-center gap-2">
-        <ColorInput value={settings.customColor1} onChange={(v) => apply("customColor1", v)} />
+        <ColorInput
+          value={settings.customColor1}
+          onChange={(v) => apply("customColor1", v)}
+        />
         {settings.customMode === "gradient" && (
-          <ColorInput value={settings.customColor2} onChange={(v) => apply("customColor2", v)} />
+          <ColorInput
+            value={settings.customColor2}
+            onChange={(v) => apply("customColor2", v)}
+          />
         )}
       </div>
       {settings.customMode === "gradient" && (
@@ -413,7 +439,7 @@ function CustomBackgroundField() {
             onChange={(e) => apply("customAngle", Number(e.target.value))}
             className="h-1.5 flex-1 cursor-pointer appearance-none rounded-full bg-muted accent-primary"
           />
-          <span className="w-10 text-right text-sm tabular-nums text-muted-foreground">
+          <span className="w-10 text-right text-sm text-muted-foreground tabular-nums">
             {settings.customAngle}°
           </span>
         </div>
@@ -470,7 +496,12 @@ function BackgroundImageField() {
         </div>
       ) : (
         <label className="flex h-9 cursor-pointer items-center justify-center rounded-md border border-dashed text-sm text-muted-foreground transition-colors hover:bg-muted">
-          <input type="file" accept="image/*" className="hidden" onChange={onFile} />
+          <input
+            type="file"
+            accept="image/*"
+            className="hidden"
+            onChange={onFile}
+          />
           Upload image
         </label>
       )}
@@ -514,4 +545,3 @@ function WatermarkField() {
     </div>
   );
 }
-

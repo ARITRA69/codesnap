@@ -14,55 +14,60 @@ import { useEditor } from "./editor-context";
 const BASE_PADDING = 20; // matches CodeEditor
 const GUTTER_GAP = 16;
 
-export const CodeCanvas = forwardRef<HTMLDivElement>(function CodeCanvas(_props, ref) {
-  const { settings } = useEditor();
-  const background = resolveBackgroundCss(settings);
+export const CodeCanvas = forwardRef<HTMLDivElement>(
+  function CodeCanvas(_props, ref) {
+    const { settings } = useEditor();
+    const background = resolveBackgroundCss(settings);
 
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [cardSize, setCardSize] = useState<{ w: number; h: number } | null>(null);
-  const ratio = getAspectRatio(settings.aspectRatio);
+    const cardRef = useRef<HTMLDivElement>(null);
+    const [cardSize, setCardSize] = useState<{ w: number; h: number } | null>(
+      null,
+    );
+    const ratio = getAspectRatio(settings.aspectRatio);
 
-  useLayoutEffect(() => {
-    const el = cardRef.current;
-    if (!el) return;
-    const measure = () => setCardSize({ w: el.offsetWidth, h: el.offsetHeight });
-    measure();
-    const observer = new ResizeObserver(measure);
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
+    useLayoutEffect(() => {
+      const el = cardRef.current;
+      if (!el) return;
+      const measure = () =>
+        setCardSize({ w: el.offsetWidth, h: el.offsetHeight });
+      measure();
+      const observer = new ResizeObserver(measure);
+      observer.observe(el);
+      return () => observer.disconnect();
+    }, []);
 
-  const outerStyle = useMemo(() => {
-    if (ratio && cardSize) {
-      const p = settings.padding;
-      let w = cardSize.w + 2 * p;
-      let h = cardSize.h + 2 * p;
-      if (w / h < ratio) w = h * ratio;
-      else h = w / ratio;
+    const outerStyle = useMemo(() => {
+      if (ratio && cardSize) {
+        const p = settings.padding;
+        let w = cardSize.w + 2 * p;
+        let h = cardSize.h + 2 * p;
+        if (w / h < ratio) w = h * ratio;
+        else h = w / ratio;
+        return {
+          background: background.css,
+          width: w,
+          height: h,
+          display: "flex" as const,
+          alignItems: "center" as const,
+          justifyContent: "center" as const,
+        };
+      }
       return {
         background: background.css,
-        width: w,
-        height: h,
-        display: "flex" as const,
-        alignItems: "center" as const,
-        justifyContent: "center" as const,
+        padding: settings.padding,
+        display: "inline-block" as const,
       };
-    }
-    return {
-      background: background.css,
-      padding: settings.padding,
-      display: "inline-block" as const,
-    };
-  }, [ratio, cardSize, settings.padding, background.css]);
+    }, [ratio, cardSize, settings.padding, background.css]);
 
-  return (
-    <div ref={ref} style={outerStyle}>
-      <div ref={cardRef} className="inline-block">
-        <CodeCard />
+    return (
+      <div ref={ref} style={outerStyle}>
+        <div ref={cardRef} className="inline-block">
+          <CodeCard />
+        </div>
       </div>
-    </div>
-  );
-});
+    );
+  },
+);
 
 function CodeCard() {
   const { settings, highlighter } = useEditor();
@@ -71,7 +76,10 @@ function CodeCard() {
     : { fg: "#e5e7eb", bg: "#282c34" };
   const fontFamily = getFontFamily(settings.fontFamily);
 
-  const lineCount = useMemo(() => settings.code.split("\n").length, [settings.code]);
+  const lineCount = useMemo(
+    () => settings.code.split("\n").length,
+    [settings.code],
+  );
   const charWidth = settings.fontSize * 0.6;
   const gutterWidth = settings.showLineNumbers
     ? String(lineCount).length * charWidth
@@ -95,7 +103,7 @@ function CodeCard() {
         fontFamily={fontFamily}
         fontSize={settings.fontSize}
       />
-      <div className="relative cs-code-scroll">
+      <div className="cs-code-scroll relative">
         {settings.showLineNumbers && (
           <LineNumbers
             count={lineCount}
@@ -197,15 +205,28 @@ function TitleBar({
   );
 
   if (style === "minimal") {
-    return <div className="flex items-center justify-center px-4 py-2.5">{filenameInput}</div>;
+    return (
+      <div className="flex items-center justify-center px-4 py-2.5">
+        {filenameInput}
+      </div>
+    );
   }
 
   return (
     <div className="relative flex items-center px-4 py-3">
       <div className="flex gap-2">
-        <span className="size-3 rounded-full" style={{ background: "#ff5f56" }} />
-        <span className="size-3 rounded-full" style={{ background: "#ffbd2e" }} />
-        <span className="size-3 rounded-full" style={{ background: "#27c93f" }} />
+        <span
+          className="size-3 rounded-full"
+          style={{ background: "#ff5f56" }}
+        />
+        <span
+          className="size-3 rounded-full"
+          style={{ background: "#ffbd2e" }}
+        />
+        <span
+          className="size-3 rounded-full"
+          style={{ background: "#27c93f" }}
+        />
       </div>
       <div className="absolute left-1/2 -translate-x-1/2">{filenameInput}</div>
     </div>

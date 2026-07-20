@@ -20,7 +20,11 @@ import { useEditor } from "./editor-context";
 import { ImportButton } from "./import-button";
 import { ThemeToggle } from "./theme-toggle";
 
-export function Toolbar({ canvasRef }: { canvasRef: RefObject<HTMLDivElement | null> }) {
+export function Toolbar({
+  canvasRef,
+}: {
+  canvasRef: RefObject<HTMLDivElement | null>;
+}) {
   const { settings } = useEditor();
   const [imageCopied, setImageCopied] = useState(false);
   const [codeCopied, setCodeCopied] = useState(false);
@@ -99,7 +103,10 @@ export function Toolbar({ canvasRef }: { canvasRef: RefObject<HTMLDivElement | n
     <header className="flex h-14 shrink-0 items-center justify-between border-b bg-card px-4">
       <div className="flex items-center gap-3">
         <div className="flex items-center gap-2">
-          <HugeiconsIcon icon={SourceCodeIcon} className="size-5 text-primary" />
+          <HugeiconsIcon
+            icon={SourceCodeIcon}
+            className="size-5 text-primary"
+          />
           <span className="text-sm font-semibold">CodeSnap</span>
         </div>
         <ImportButton />
@@ -141,7 +148,13 @@ export function Toolbar({ canvasRef }: { canvasRef: RefObject<HTMLDivElement | n
           </Button>
           <Menu.Root>
             <Menu.Trigger
-              render={<Button size="icon-sm" disabled={busy !== null} aria-label="Export format" />}
+              render={
+                <Button
+                  size="icon-sm"
+                  disabled={busy !== null}
+                  aria-label="Export format"
+                />
+              }
             >
               <HugeiconsIcon icon={ArrowDown01Icon} />
             </Menu.Trigger>
@@ -180,4 +193,3 @@ function ExportMenuItem({
     </Menu.Item>
   );
 }
-

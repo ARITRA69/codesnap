@@ -54,8 +54,10 @@ export function highlightToHtml(
         .map((token) => {
           const styles = [`color:${token.color ?? "inherit"}`];
           if (token.fontStyle) {
-            if (token.fontStyle & FONT_STYLE_ITALIC) styles.push("font-style:italic");
-            if (token.fontStyle & FONT_STYLE_BOLD) styles.push("font-weight:bold");
+            if (token.fontStyle & FONT_STYLE_ITALIC)
+              styles.push("font-style:italic");
+            if (token.fontStyle & FONT_STYLE_BOLD)
+              styles.push("font-weight:bold");
             if (token.fontStyle & FONT_STYLE_UNDERLINE)
               styles.push("text-decoration:underline");
           }

@@ -28,7 +28,9 @@ export function buildShareUrl(settings: EditorSettings): string {
  * Decode a share link's hash back into a partial settings object.
  * Only keys we recognise are kept; the caller merges over DEFAULT_SETTINGS.
  */
-export function decodeSharedSettings(hash: string): Partial<EditorSettings> | null {
+export function decodeSharedSettings(
+  hash: string,
+): Partial<EditorSettings> | null {
   const segment = hash
     .replace(/^#/, "")
     .split("&")
@@ -41,7 +43,8 @@ export function decodeSharedSettings(hash: string): Partial<EditorSettings> | nu
   try {
     const json = decompressFromEncodedURIComponent(encoded);
     if (!json) return null;
-    const parsed = JSON.parse(json) as { d?: unknown } | Record<string, unknown>;
+    const parsed = JSON.parse(json) as
+      { d?: unknown } | Record<string, unknown>;
     const data =
       parsed && typeof parsed === "object" && "d" in parsed
         ? (parsed.d as Record<string, unknown>)
