@@ -10,6 +10,7 @@ import "@fontsource/ibm-plex-mono/latin-700.css";
 import "@fontsource/source-code-pro/latin-400.css";
 import "@fontsource/source-code-pro/latin-700.css";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "CodeSnap — Beautiful code screenshots",
@@ -28,7 +29,10 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body className="flex min-h-full flex-col">
+        <Analytics />
+        {children}
+      </body>
     </html>
   );
 }
